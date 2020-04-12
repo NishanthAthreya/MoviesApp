@@ -11,5 +11,5 @@ Then start the server:
 ```
 npm run start
 ```
-Finally, connect the emulator to the server and the run the app.
+Finally, connect the emulator to the server and run the app.
 
