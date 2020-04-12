@@ -2,7 +2,7 @@
 MoviesApp is an android app that displays mock movie statistics.
 ## Getting Started
 These instructions will get the app ready on your local machine.
-###Starting Server
+### Starting Server
 Switch to the directory of the server:
 ```
 cd server
