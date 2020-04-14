@@ -16,7 +16,6 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     private ScreenView<T> view;
 
     public BaseFragment() {
-        this.view = view();
     }
 
     /**
@@ -48,6 +47,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
                 inflater,
                 container
         );
+        binding.setLifecycleOwner(this);
         return binding.getRoot();
     }
 
@@ -60,6 +60,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
                 view,
                 savedInstanceState
         );
+        this.view = view();
         this.view.applyBinding(binding);
     }
 

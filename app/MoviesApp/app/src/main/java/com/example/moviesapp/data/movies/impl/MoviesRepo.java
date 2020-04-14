@@ -41,4 +41,24 @@ public class MoviesRepo {
                 .map(converter::apply)
                 .toObservable();
     }
+
+    /**
+     * Returns movie.
+     */
+    public Observable<Movie> movie(String id) {
+        return api.movies()
+                .map(converter::apply)
+                .map(movies -> getMovie(id, movies))
+                .toObservable();
+    }
+
+    private Movie getMovie(
+            String id,
+            List<Movie> movies
+    ) {
+        return movies.stream()
+                .filter(movie -> movie.getId().equals(id))
+                .findFirst()
+                .get();
+    }
 }

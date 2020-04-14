@@ -8,34 +8,33 @@ import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.moviesapp.view.components.listitem.ListItemComponentHolder;
 import com.example.ui_components.listitem.impl.ListItemView;
-import com.example.ui_components.listitem.model.ListItem;
 
 /**
  * Components recyclerview adapter.
  */
-public class ComponentsAdapter extends ListAdapter<ListItem, ListItemComponentHolder> {
+public class ComponentsAdapter extends ListAdapter<ListItemComponent, ListItemComponentHolder> {
 
     ComponentsAdapter() {
-        this(new DiffUtil.ItemCallback<ListItem>() {
+        this(new DiffUtil.ItemCallback<ListItemComponent>() {
             @Override
             public boolean areItemsTheSame(
-                    @NonNull ListItem oldItem,
-                    @NonNull ListItem newItem
+                    @NonNull ListItemComponent oldItem,
+                    @NonNull ListItemComponent newItem
             ) {
                 return false;
             }
 
             @Override
             public boolean areContentsTheSame(
-                    @NonNull ListItem oldItem,
-                    @NonNull ListItem newItem
+                    @NonNull ListItemComponent oldItem,
+                    @NonNull ListItemComponent newItem
             ) {
                 return false;
             }
         });
     }
 
-    private ComponentsAdapter(@NonNull DiffUtil.ItemCallback<ListItem> diffCallback) {
+    private ComponentsAdapter(@NonNull DiffUtil.ItemCallback<ListItemComponent> diffCallback) {
         super(diffCallback);
     }
 
@@ -50,8 +49,8 @@ public class ComponentsAdapter extends ListAdapter<ListItem, ListItemComponentHo
     @Override
     public void onBindViewHolder(@NonNull ListItemComponentHolder holder, int position) {
         holder.bind(
-                getItem(position),
-                () -> {}
+                getItem(position).getModel(),
+                getItem(position).getHandler()
         );
     }
 }

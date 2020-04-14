@@ -1,5 +1,7 @@
 package com.example.ui_components.listitem.model;
 
+import android.graphics.Bitmap;
+
 /**
  * ListItem presentation model.
  */

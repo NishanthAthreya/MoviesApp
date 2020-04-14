@@ -1,7 +1,6 @@
 package com.example.moviesapp.data.movies.impl;
 
 import com.example.moviesapp.data.movies.dto.MoviesDto;
-import com.example.moviesapp.data.movies.dto.MoviesListDto;
 import com.example.moviesapp.data.movies.model.Movie;
 
 import java.util.List;
@@ -18,7 +17,10 @@ public class MoviesDtoConverter implements Function<MoviesDto, List<Movie>> {
         return moviesDto.movies
                 .movies
                 .stream()
-                .map(movieDto -> new Movie(movieDto.title))
-                .collect(Collectors.toList());
+                .map(movieDto -> new Movie(
+                        movieDto.title,
+                        movieDto.id,
+                        movieDto.imageUrl
+                )).collect(Collectors.toList());
     }
 }

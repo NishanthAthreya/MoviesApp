@@ -1,10 +1,8 @@
 package com.example.ui_components.listitem.impl;
 
 import android.content.Context;
-import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.ui_components.BaseView;
 import com.example.ui_components.BaseViewModel;

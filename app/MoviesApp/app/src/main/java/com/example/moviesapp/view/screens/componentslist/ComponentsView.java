@@ -12,34 +12,40 @@ import com.example.ui_components.listitem.model.ListItem;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class ComponentsView extends BaseViewImpl<FragmentComponentsListBinding> {
 
     private final MoviesRepo moviesRepo;
     private final CompositeDisposable compositeDisposable;
+    private final ComponentsFragment.ComponentsNavigator componentsNavigator;
 
-    ComponentsView() {
+    ComponentsView(ComponentsFragment.ComponentsNavigator componentsNavigator) {
         moviesRepo = new MoviesRepo();
         compositeDisposable = new CompositeDisposable();
+        this.componentsNavigator = componentsNavigator;
     }
 
     @Override
     protected void setBinding(FragmentComponentsListBinding binding) {
-        ListAdapter<ListItem, ListItemComponentHolder> adapter = new ComponentsAdapter();
+        ListAdapter<ListItemComponent, ListItemComponentHolder> adapter = new ComponentsAdapter();
         binding.container.setAdapter(adapter);
         compositeDisposable.add(
                 moviesRepo.movies()
                         .map(this::convertToListItems)
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(adapter::submitList)
         );
+        binding.executePendingBindings();
     }
 
-    private List<ListItem> convertToListItems(List<Movie> movies) {
+    private List<ListItemComponent> convertToListItems(List<Movie> movies) {
         return movies.stream()
-                .map(movie -> new ListItem(movie.getTitle()))
-                .collect(Collectors.toList());
+                .map(movie -> new ListItemComponent(
+                        new ListItem(movie.getTitle()),
+                        () -> componentsNavigator.openMovieDetails(movie))
+                ).collect(Collectors.toList());
     }
 
     @Override

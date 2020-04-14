@@ -27,7 +27,7 @@ public class ListItemViewModelTest {
         when(listItem.label()).thenReturn(label);
 
         classUnderTest.setModel(listItem);
-        
+
         CharSequence result = classUnderTest.label();
 
         assertEquals(
