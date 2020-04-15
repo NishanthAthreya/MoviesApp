@@ -1,6 +1,6 @@
 package com.example.moviesapp.data.movies;
 
-import com.example.moviesapp.data.movies.dto.MoviesDto;
+import com.example.moviesapp.data.movies.dto.MoviesListDto;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 public interface MoviesApi {
 
     @GET("/api/v1/movies")
-    Single<MoviesDto> movies();
+    Single<MoviesListDto> movies();
 }

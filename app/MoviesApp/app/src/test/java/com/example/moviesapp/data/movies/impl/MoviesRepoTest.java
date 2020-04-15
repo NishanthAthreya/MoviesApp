@@ -1,7 +1,7 @@
 package com.example.moviesapp.data.movies.impl;
 
 import com.example.moviesapp.data.movies.MoviesApi;
-import com.example.moviesapp.data.movies.dto.MoviesDto;
+import com.example.moviesapp.data.movies.dto.MoviesListDto;
 import com.example.moviesapp.data.movies.model.Movie;
 
 import org.junit.Before;
@@ -38,7 +38,7 @@ public class MoviesRepoTest {
 
     @Test
     public void movies() {
-        MoviesDto moviesDto = mock(MoviesDto.class);
+        MoviesListDto moviesDto = mock(MoviesListDto.class);
         List<Movie> movies = Collections.singletonList(mock(Movie.class));
 
         when(moviesApi.movies()).thenReturn(Single.just(moviesDto));

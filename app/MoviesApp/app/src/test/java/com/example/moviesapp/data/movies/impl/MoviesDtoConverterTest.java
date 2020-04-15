@@ -1,7 +1,6 @@
 package com.example.moviesapp.data.movies.impl;
 
 import com.example.moviesapp.data.movies.dto.MovieDto;
-import com.example.moviesapp.data.movies.dto.MoviesDto;
 import com.example.moviesapp.data.movies.dto.MoviesListDto;
 import com.example.moviesapp.data.movies.model.Movie;
 
@@ -25,15 +24,17 @@ public class MoviesDtoConverterTest {
 
     @Test
     public void apply() {
+        String id= "1";
         String title = "title";
+        String imageUrl = "imageUrl";
         MovieDto movieDto = new MovieDto(
-                "1",
-                title
+                id,
+                title,
+                imageUrl
         );
         MoviesListDto moviesListDto = new MoviesListDto(Collections.singletonList(movieDto));
-        MoviesDto moviesDto = new MoviesDto(moviesListDto);
 
-        List<Movie> result = classUnderTest.apply(moviesDto);
+        List<Movie> result = classUnderTest.apply(moviesListDto);
 
         assertNotNull(result);
         assertEquals(
@@ -45,8 +46,16 @@ public class MoviesDtoConverterTest {
 
         assertNotNull(movie);
         assertEquals(
+                id,
+                movie.getId()
+        );
+        assertEquals(
                 title,
                 movie.getTitle()
+        );
+        assertEquals(
+                imageUrl,
+                movie.getImageUrl()
         );
     }
 }

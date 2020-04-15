@@ -7,7 +7,7 @@ const app = express();
 app.get('/api/v1/movies', (req: any, res: any) => {
     res.status(200).send({
         message: 'retrieved movies',
-        movies: db
+        movies: db.movies
     })
 });
 

@@ -1,6 +1,6 @@
 package com.example.moviesapp.data.movies.impl;
 
-import com.example.moviesapp.data.movies.dto.MoviesDto;
+import com.example.moviesapp.data.movies.dto.MoviesListDto;
 import com.example.moviesapp.data.movies.model.Movie;
 
 import java.util.List;
@@ -10,12 +10,11 @@ import java.util.stream.Collectors;
 /**
  * Converter that converts the movies dto to a list of movies.
  */
-public class MoviesDtoConverter implements Function<MoviesDto, List<Movie>> {
+public class MoviesDtoConverter implements Function<MoviesListDto, List<Movie>> {
 
     @Override
-    public List<Movie> apply(MoviesDto moviesDto) {
+    public List<Movie> apply(MoviesListDto moviesDto) {
         return moviesDto.movies
-                .movies
                 .stream()
                 .map(movieDto -> new Movie(
                         movieDto.title,
