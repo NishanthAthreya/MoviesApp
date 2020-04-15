@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 var db = require("./db/db")
 // Set up the express app
 const app = express();
@@ -9,6 +10,8 @@ app.get('/api/v1/movies', (req: any, res: any) => {
         movies: db
     })
 });
+
+app.use('/images', express.static('db/images'))
 const PORT = 5000
 
 app.listen(PORT, () => {
