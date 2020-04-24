@@ -12,15 +12,16 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/label"
             style="@style/TextView.ListItem"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:text="@{viewModel.label()}"
             android:onClick="@{() -> handler.onClick()}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/list_item_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
