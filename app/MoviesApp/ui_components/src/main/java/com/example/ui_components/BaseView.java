@@ -42,6 +42,10 @@ public abstract class BaseView<T extends ViewDataBinding, M, H> extends FrameLay
                     true
             );
         }
+        setLayoutParams(new FrameLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT
+        ));
 
         viewModel = buildViewModel();
     }
