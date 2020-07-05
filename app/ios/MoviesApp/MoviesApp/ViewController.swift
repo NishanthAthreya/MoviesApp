@@ -10,47 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var movies: Array<String> = []
+    let moviesProvider = MoviesDataProvider()
 
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = false
         moviesCollectionView.dataSource = self
-        getData()
-    }
-    
-    func getData() {
-        let url = URL(string:"")
-        let task = URLSession.shared.dataTask(with:url!, completionHandler: {(data, response, error) in
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String : Any]
-                let movies = json?["movies"] as! Array<Dictionary<String,Any>>
-                for (_, element) in movies.enumerated() {
-                    self.movies.append(element["title"] as! String)
-                }
-                DispatchQueue.main.async {
-                    self.moviesCollectionView.reloadData()
-                }
-            }
-            catch {
-                print("Error parsing data")
-            }
+        moviesProvider.getData (reloadData: {
+            self.moviesCollectionView.reloadData()
         })
-        
-        task.resume()
     }
 
 }
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return moviesProvider.getMovies().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! LabelCollectionViewCell
-        cell.setup(text: movies[indexPath.item])
+        cell.setup(text: moviesProvider.getMovies()[indexPath.item])
         return cell
     }
     
