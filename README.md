@@ -1,5 +1,5 @@
 # MoviesApp
-MoviesApp is an android app that displays mock movie statistics.
+MoviesApp is a mobile app that displays mock movie statistics.
 
 ![Image of Movies App](/images/moviesapp.png)
 ## Getting Started

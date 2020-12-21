@@ -17,9 +17,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isToolbarHidden = false
         moviesCollectionView.dataSource = self
-        moviesProvider.getData (reloadData: {
-            self.moviesCollectionView.reloadData()
-        })
+        moviesProvider.getData(
+            reloadData: {
+                self.moviesCollectionView.reloadData()
+            }
+        )
     }
 
 }
@@ -31,7 +33,8 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! LabelCollectionViewCell
-        cell.setup(text: moviesProvider.getMovies()[indexPath.item])
+        cell.setup(text: moviesProvider.getMovies()[indexPath.item].title)
+
         return cell
     }
     
